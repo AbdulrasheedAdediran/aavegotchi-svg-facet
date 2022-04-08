@@ -140,18 +140,6 @@ uint256 wearableId;
 
 - Receives `_body` and `equipedWearables` parameters.
 - Checks if a storage slot has been assigned to [background layer](#AavegotchiLayers).
-- Assigns a new storage slot
--
--
--
-
-##
-
-    portalAavegotchisSvg()
-
--
--
--
 
 ##
 
@@ -159,8 +147,6 @@ uint256 wearableId;
 
 - Receives a `bytes32` defined as \_svgType and `uint256` defined as `_itemId`
 - Gets the svgType of the given `itemId`, stores it in a variable and returns the svg.
--
--
 
 ##
 
