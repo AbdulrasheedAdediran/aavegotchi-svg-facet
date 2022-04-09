@@ -1,34 +1,56 @@
-# **Aavegotchi SVG Facet**: A Detailed Review of Aavegotchi's SVG Facet.
+# **Aavegotchi SVG Facet**
 
-## About Aavegotchi
+# A Detailed Review of [Aavegotchi's SVG Facet](https://github.com/aavegotchi/aavegotchi-contracts/blob/master/contracts/Aavegotchi/facets/SvgFacet.sol).
 
 ## **IMPORTS**
 
-### import {AppStorage, SvgLayer, Dimensions} from "../libraries/LibAppStorage.sol";
+    import {AppStorage, SvgLayer, Dimensions} from "../libraries/LibAppStorage.sol";
 
-- AppStorage: Storage location for SVG variables
-
----
-
-### import {LibAavegotchi, PortalAavegotchiTraitsIO, EQUIPPED_WEARABLE_SLOTS, PORTAL_AAVEGOTCHIS_NUM, NUMERIC_TRAITS_NUM} from "../libraries/LibAavegotchi.sol";
-
----
-
-### import {LibItems} from "../libraries/LibItems.sol";
-
-### import {Modifiers, ItemType} from "../libraries/LibAppStorage.sol";
+- AppStorage: A struct that contains SVG variables.
+- SvgLayer: Struct that contains the svg layers contract, offset and size.
+- Dimensions: A struct that contains variables for setting dimensions of svgs.
+- LibAppStorage: A library that contains the `onlyItemManager` modifier that restricts access of certain functions to `itemManagers`.
 
 ---
 
-### import {LibSvg} from "../libraries/LibSvg.sol";
+    import {LibAavegotchi, PortalAavegotchiTraitsIO, EQUIPPED_WEARABLE_SLOTS, PORTAL_AAVEGOTCHIS_NUM, NUMERIC_TRAITS_NUM} from "../libraries/LibAavegotchi.sol";
+
+- LibAavegotchi: A library that contains variables that represent status of the portal.
+- PortalAavegotchiTraitsIO: A struct that contains data about aavegotchis in the portal.
+- EQUIPPED_WEARABLE_SLOTS: A constant variable that holds the maximum number of wearables each aavegotchi can be equiped with.
+- PORTAL_AAVEGOTCHIS_NUM: A constant variable that holds the number portals an aavegotchi can access.
+- NUMERIC_TRAITS_NUM: A constant variable that holds the number traits an aavegotchi can have.
 
 ---
 
-### import {LibStrings} from "../../shared/libraries/LibStrings.sol";
+    import {LibItems} from "../libraries/LibItems.sol";
+
+<a id="lib-items"></a>
+
+- LibItems: A library that contains constant variables that hold the different wearables an aavegotchi can be equiped with.
+
+  import {Modifiers, ItemType} from "../libraries/LibAppStorage.sol";
+
+- Modifiers: A contract that contains an `onlyItemManager` modifier that restricts access of a function to item manager.
+- ItemType: A struct that contains variables that describe an item.
+
+---
+
+    import {LibSvg} from "../libraries/LibSvg.sol";
+
+- LibSvg: A library thet contains a `StoreSvg` event that is fired when an svg is stored, an `UpdateSvg` event that is fired when an svg is updated
+
+---
+
+    import {LibStrings} from "../../shared/libraries/LibStrings.sol";
+
+- LibStrings
 
 ## **DATA STRUCTURES AND VARIABLES**
 
-- <a id="SvgLayerDetails"></a>`SvgLayerDetails`
+<a id="SvgLayerDetails"></a>
+
+- `SvgLayerDetails`
 - A struct that contains details about the different layers of an aavegotchi
 
 ##
@@ -48,7 +70,9 @@
 
 ##
 
-- <a id="AavegotchiLayers"></a>`AavegotchiLayers`
+<a id="AavegotchiLayers"></a>
+
+- `AavegotchiLayers`
 - A struct that contains the different layers of an aavegotchi
 
 ##
@@ -68,7 +92,9 @@
 
 ##
 
-- <a id="Sleeve"></a>`Sleeve`
+<a id="Sleeve"></a>
+
+- `Sleeve`
 - A struct that contains details about the sleeve of an aavegotchi
 - Used to set the sleeves of an aavegotchi
 
@@ -138,8 +164,24 @@ uint256 wearableId;
 
     addBodyAndWearableSvgLayers()
 
-- Receives `_body` and `equipedWearables` parameters.
-- Checks if a storage slot has been assigned to [background layer](#AavegotchiLayers).
+- An `internal` `view` function that receives `_body` and `equipedWearables` parameters.
+- Checks if background has been equiped with background layer and gets the aavegotchi if the condition is true. Else, it adds a background layer to the aavegotchi.
+- Checks if the aavegotchi has been equiped with a body layer and equips the aavegotchi with body and sleeves layers if the condition is false.
+- Gets hands layers from [LibSvg](#lib-svg).
+- Checks if the aavegotchi has been equiped with a left hand and equips the aavegotchi with a left hand if the condition is false.
+- Checks if the aavegotchi has been equiped with a right hand and equips the aavegotchi with a right hand if the condition is false.
+- Checks if the aavegotchi is equiped with face layer and equips the aavegotchi with a face layer if the condition is false.
+- Checks if the aavegotchi is equiped with eyes and equips the aavegotchi with a eyes if the condition is false.
+- Checks if the aavegotchi is equiped with a head and equips the aavegotchi with a head if the condition is false.
+- Checks if the aavegotchi is equiped with pet wearables and equips the aavegotchi with a pet wearable if the condition is false.
+
+##
+
+    portalAavegotchisSvg()
+
+- Receives a `uint256` defined as `_tokenId`
+- Returns an array of `string` defined as `svg_`
+- Checks that the tokenId's status is `STATUS_OPEN_PORTAL` else it throws an error that states "AavegotchiFacet: Portal not open".
 
 ##
 
