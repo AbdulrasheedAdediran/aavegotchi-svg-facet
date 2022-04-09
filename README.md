@@ -50,7 +50,8 @@
 
 <a id="SvgLayerDetails"></a>
 
-- `SvgLayerDetails`
+`SvgLayerDetails`
+
 - A struct that contains details about the different layers of an aavegotchi
 
 ##
@@ -72,7 +73,8 @@
 
 <a id="AavegotchiLayers"></a>
 
-- `AavegotchiLayers`
+`AavegotchiLayers`
+
 - A struct that contains the different layers of an aavegotchi
 
 ##
@@ -94,7 +96,8 @@
 
 <a id="Sleeve"></a>
 
-- `Sleeve`
+`Sleeve`
+
 - A struct that contains details about the sleeve of an aavegotchi
 - Used to set the sleeves of an aavegotchi
 
