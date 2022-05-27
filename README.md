@@ -1,4 +1,4 @@
-# **Smart Contract Review**
+# **Smart Contract Review.**
 
 # A Detailed Review of [Aavegotchi's SVG Facet](https://github.com/aavegotchi/aavegotchi-contracts/blob/master/contracts/Aavegotchi/facets/SvgFacet.sol).
 
